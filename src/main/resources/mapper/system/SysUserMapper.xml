@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.SysUserMapper">
+	<resultMap id="BaseResultMap" type="com.model.system.SysUserModel">
+		<result column="USERCODE" jdbcType="VARCHAR" property="userCode"/>
+		<result column="USERCNAME" jdbcType="VARCHAR" property="userCName"/>
+		<result column="USERENAME" jdbcType="VARCHAR" property="userEName"/>
+		<result column="USERTNAME" jdbcType="VARCHAR" property="userTName"/>
+		<result column="USERPWD" jdbcType="VARCHAR" property="userPwd"/>
+		<result column="UNITCODE" jdbcType="VARCHAR" property="unitCode"/>
+		<result column="UNITNAME" jdbcType="VARCHAR" property="unitName"/>
+		<result column="USERTYPE" jdbcType="VARCHAR" property="userType"/>
+		<result column="TELPHONE" jdbcType="VARCHAR" property="telPhone"/>
+		<result column="PHONE" jdbcType="VARCHAR" property="phone"/>
+		<result column="PICPATH" jdbcType="VARCHAR" property="picPath"/>
+		<result column="VALID" jdbcType="VARCHAR" property="valid"/>
+		<result column="OPERATECODE" jdbcType="VARCHAR" property="operateCode"/>
+		<result column="OPERATENAME" jdbcType="VARCHAR" property="operateName"/>
+		<result column="OPERATEDATE" jdbcType="VARCHAR" property="operateDate"/>
+		<result column="UPDATECODE" jdbcType="VARCHAR" property="updateCode"/>
+		<result column="UPDATENAME" jdbcType="VARCHAR" property="updateName"/>
+		<result column="UPDATEDATE" jdbcType="VARCHAR" property="updateDate"/>
+	</resultMap>
+	
+	<!-- 用户查询 -->
+	<select id="selectAllPage" resultMap="BaseResultMap">
+		SELECT
+			t1.USERCODE AS USERCODE,
+			t1.USERCNAME AS USERCNAME,
+			t1.USERENAME AS USERENAME,
+			t1.USERTNAME AS USERTNAME,
+			t1.USERPWD AS USERPWD,
+			t1.UNITCODE AS UNITCODE,
+			t2.UNITNAME AS UNITNAME,
+			t1.USERTYPE AS USERTYPE,
+			t1.TELPHONE AS TELPHONE,
+			t1.PHONE AS PHONE,
+			t1.PICPATH AS PICPATH,
+			t1.VALID AS VALID,
+			t1.OPERATECODE AS OPERATECODE,
+			t1.OPERATENAME AS OPERATENAME,
+			DATE_FORMAT(t1.OPERATEDATE,'%Y-%m-%d') AS OPERATEDATE,
+			t1.UPDATECODE AS UPDATECODE,
+			t1.UPDATENAME AS UPDATENAME,
+			DATE_FORMAT(t1.UPDATEDATE ,'%Y-%m-%d') AS UPDATEDATE
+		FROM
+			SYSUSER t1
+		LEFT JOIN SYSUNIT t2 ON t1.UNITCODE = t2.UNITCODE
+		WHERE 1 = 1
+		limit ${dataTable.start}, ${dataTable.length}
+	</select>
+	
+	<select id="selectAllTotal" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+			SYSUSER t1
+		LEFT JOIN SYSUNIT t2 ON t1.UNITCODE = t2.UNITCODE
+		WHERE 1 = 1
+	</select>
+	
+</mapper>

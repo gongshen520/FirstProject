@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.system.SysCodeMapper">
+	<resultMap id="BaseResultMap" type="com.model.system.SysCodeModel">
+		<result column="PUBCODE" jdbcType="VARCHAR" property="pubCode"/>
+		<result column="PUBVALUE" jdbcType="VARCHAR" property="pubValue"/>
+		<result column="PUBCNAME" jdbcType="VARCHAR" property="pubCName"/>
+		<result column="PUBENAME" jdbcType="VARCHAR" property="pubEName"/>
+		<result column="PUBTNAME" jdbcType="VARCHAR" property="pubTName"/>
+		<result column="VALID" jdbcType="VARCHAR" property="valid"/>
+		<result column="OPERATECODE" jdbcType="VARCHAR" property="operateCode"/>
+		<result column="OPERATENAME" jdbcType="VARCHAR" property="operateName"/>
+		<result column="OPERATEDATE" jdbcType="VARCHAR" property="operateDate"/>
+		<result column="UPDATECODE" jdbcType="VARCHAR" property="updateCode"/>
+		<result column="UPDATENAME" jdbcType="VARCHAR" property="updateName"/>
+		<result column="UPDATEDATE" jdbcType="VARCHAR" property="updateDate"/>
+	</resultMap>
+	
+	<!-- 基础数据查询 -->
+	<select id="selectAllPage" resultMap="BaseResultMap">
+		SELECT
+			PUBCODE AS PUBCODE,
+			PUBVALUE AS PUBVALUE,
+			PUBCNAME AS PUBCNAME,
+			PUBENAME AS PUBENAME,
+			PUBTNAME AS PUBTNAME,
+			VALID AS VALID,
+			OPERATECODE AS OPERATECODE,
+			OPERATENAME AS OPERATENAME,
+			OPERATEDATE AS OPERATEDATE,
+			UPDATECODE AS UPDATECODE,
+			UPDATENAME AS UPDATENAME,
+			UPDATEDATE AS UPDATEDATE
+		FROM
+			SYSCODE
+		WHERE 1 = 1
+		limit ${dataTable.start}, ${dataTable.length}
+	</select>
+	
+	<select id="selectAllTotal" resultType="java.lang.Integer">
+		SELECT
+			count(1)
+		FROM
+			SYSCODE
+		WHERE 1 = 1
+	</select>
+	
+	<insert id="save" parameterType="com.model.system.SysCodeModel">
+		INSERT INTO SYSCODE(
+			PUBCODE,
+			PUBVALUE,
+			PUBCNAME,
+			PUBENAME,
+			PUBTNAME,
+			VALID,
+			OPERATECODE,
+			OPERATENAME,
+			OPERATEDATE,
+			UPDATECODE,
+			UPDATENAME,
+			UPDATEDATE
+		)
+		VALUES(
+			#{pubCode,jdbcType=VARCHAR},
+			#{pubValue,jdbcType=VARCHAR},
+			#{pubCName,jdbcType=VARCHAR},
+			#{pubEName,jdbcType=VARCHAR},
+			#{pubTName,jdbcType=VARCHAR},
+			#{valid,jdbcType=VARCHAR},
+			#{operateCode,jdbcType=VARCHAR},
+			#{operateName,jdbcType=VARCHAR},
+			#{operateDate,jdbcType=TIMESTAMP},
+			#{updateCode,jdbcType=VARCHAR},
+			#{updateName,jdbcType=VARCHAR},
+			#{updateDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<select id="selectByPK" resultType="com.model.system.SysCodeModel">
+		SELECT
+			PUBCODE AS PUBCODE,
+			PUBVALUE AS PUBVALUE,
+			PUBCNAME AS PUBCNAME,
+			PUBENAME AS PUBENAME,
+			PUBTNAME AS PUBTNAME,
+			VALID AS VALID,
+			OPERATECODE AS OPERATECODE,
+			OPERATENAME AS OPERATENAME,
+			OPERATEDATE AS OPERATEDATE,
+			UPDATECODE AS UPDATECODE,
+			UPDATENAME AS UPDATENAME,
+			UPDATEDATE AS UPDATEDATE
+		FROM
+			SYSCODE
+		WHERE 1 = 1
+		AND PUBCODE = #{pubCode}
+		AND PUBVALUE = #{pubValue}
+	</select>
+	
+	<update id="update" parameterType="com.model.system.SysCodeModel">
+		UPDATE SYSCODE 
+		SET
+			PUBCNAME = #{pubCName,jdbcType=VARCHAR},
+			PUBENAME = #{pubEName,jdbcType=VARCHAR},
+			PUBTNAME = #{pubTName,jdbcType=VARCHAR},
+			VALID = #{valid,jdbcType=VARCHAR},
+			OPERATECODE = #{operateCode,jdbcType=VARCHAR},
+			OPERATENAME = #{operateName,jdbcType=VARCHAR}, 
+			OPERATEDATE = #{operateDate,jdbcType=TIMESTAMP},
+			UPDATECODE = #{updateCode,jdbcType=VARCHAR},
+			UPDATENAME = #{updateName,jdbcType=VARCHAR},
+			UPDATEDATE = #{updateDate,jdbcType=TIMESTAMP}
+		WHERE 1 = 1
+		AND PUBCODE = #{pubCode}
+		AND PUBVALUE = #{pubValue}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM SYSCODE WHERE 1 = 1 AND PUBCODE = #{pubCode} AND PUBVALUE = #{pubValue}
+	</delete>
+</mapper>
