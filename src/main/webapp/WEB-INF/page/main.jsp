@@ -15,7 +15,7 @@
   	<link rel="stylesheet" type="text/css" href="<%=basePath%>/bootstrap-vali-admin/css/main.css">
   	<!-- Font-icon css-->
   	<link rel="stylesheet" type="text/css" href="<%=basePath%>/bootstrap-vali-admin/css/font-awesome.min.css">
-  	<title>我的官网</title>
+  	<title>我的官网测试</title>
     <style>
     	.usericon{
     		height:80px;
