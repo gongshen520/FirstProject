@@ -23,7 +23,7 @@
     </section>
     <section class="login-content">
 		<div class="logo">
-        	<h1>我的官网2024</h1>
+        	<h1>我的官网2025</h1>
       	</div>
       	<div class="login-box">
         	<form class="login-form" action="<%=basePath%>/login.action">
