@@ -23,7 +23,7 @@
   
   <!-- 添加公共属性 -->
   <properties>
-      <spring.version>5.1.1.RELEASE</spring.version>
+      <spring.version>6.0.0</spring.version>
       <!-- 内置属性(Maven预定义可以直接使用)
 		${basedir} 项目根目录 
 		${version}表示项目版本;
